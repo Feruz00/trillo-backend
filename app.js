@@ -42,7 +42,7 @@ const Follow = require('./models/Follow')
 const corsOptions ={
     origin:process.env.FRONTEND_URL, 
     credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
+    // optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
 
