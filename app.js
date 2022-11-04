@@ -39,30 +39,20 @@ const Follow = require('./models/Follow')
 //     credentials: true
 // }
 // ));
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+    });
 const corsOptions ={
     origin:process.env.FRONTEND_URL, 
     credentials:true,            //access-control-allow-credentials:true
-    // optionSuccessStatus:200
+    optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use(function (req, res, next) {
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
 // app.use(helmet());
 
 // if (process.env.NODE_ENV === 'development') {
