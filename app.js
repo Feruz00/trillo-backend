@@ -39,9 +39,12 @@ const Follow = require('./models/Follow')
 //     credentials: true
 // }
 // ));
-
-app.use(cors());
-app.options('*', cors())
+const corsOptions ={
+    origin:process.env.FRONTEND_URL, 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 // app.use(helmet());
 
@@ -107,7 +110,7 @@ const server = http.createServer(app);
 
 const io = socketio(server,{
     cors: {
-      origin: 'http://localhost:3000'
+      origin: process.env.FRONTEND_URL
     }
 });
 io.on('connection', async (socket) => {
