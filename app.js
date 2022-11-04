@@ -33,12 +33,15 @@ const User = require('./models/User');
 const Messages = require('./models/Message');
 const Follow = require('./models/Follow')
 
-app.use(cors(
-    {
-    origin: ['*'],
-    credentials: true
-}
-));
+// app.use(cors(
+//     {
+//     origin: process.env.FRONTEND_URL,
+//     credentials: true
+// }
+// ));
+
+app.use(cors());
+app.options('*', cors())
 
 // app.use(helmet());
 
